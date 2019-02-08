@@ -1,0 +1,8 @@
+.post-controls {
+  display: flex;
+  flex-direction: column;
+}
+
+textarea {
+  border: none;
+}
