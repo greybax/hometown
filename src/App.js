@@ -18,7 +18,7 @@ class App extends Component {
 
   fromPostEditor(params) {
     this.setState({
-      data : params
+      data: params
     })
   }
 
@@ -38,12 +38,17 @@ class App extends Component {
         </div>
         {isNewPost ? (
           <div className="main-panel">
+
             <div className="source">
+              <div>Markdown</div>
               <Post callback={this.fromPostEditor.bind(this)} />
             </div>
+
             <div className="destination">
+              <div>HTML</div>
               <PostView data={this.state.data} />
             </div>
+
           </div>
         ) : (
             ''

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import extract from 'md-article';
+import cyrillicToTranslit from 'cyrillic-to-translit-js';
 import './Post.css';
 
 class Post extends Component {
@@ -36,9 +37,31 @@ content2`,
     );
   }
 
+  getFilename(dateIn, title) {
+    console.log(dateIn);
+    var yyyy = dateIn.getFullYear();
+    var mm = dateIn.getMonth() + 1; // getMonth() is zero-based
+    var dd = dateIn.getDate();
+    let date = new String(10000 * yyyy + 100 * mm + dd); // Leading zeros for mm and dd
+
+    // String -> Array
+    date = date.split('');
+
+    date.splice(4, 0, '-');
+    date.splice(date.length - 2, 0, '-');
+
+    // Array -> String
+    date = date.join('');
+    let ctt = cyrillicToTranslit().transform(title, '-');
+    return `${date}-${ctt}`;
+  }
+
   updateState(event = null) {
     let value = event ? event.target.value : this.state.md;
     let articleData = extract(value, 'MMMM D, YYYY', 'en');
+
+    //filename
+    console.log(this.getFilename(new Date(articleData.date.text), articleData.title.text));
 
     this.setState({
       title: articleData.title.text,
