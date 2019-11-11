@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "cyrillic-to-translit-js": "2.2.0",
+    "cyrillic-to-translit-js": "3.0.1",
     "md-article": "1.1.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
